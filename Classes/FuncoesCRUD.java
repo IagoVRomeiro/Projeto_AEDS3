@@ -1,6 +1,7 @@
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.List;
 import java.util.Scanner;
 
 public class FuncoesCRUD {
@@ -243,4 +244,62 @@ public class FuncoesCRUD {
         }
 
     }
+
+    public static void Criptografar() {
+      
+        try {
+            System.out.print("Escolha o método de criptografia (1 - XOR, 2 - Caesar): ");
+            int metodo = Funcoes.lerIntValido();
+
+            if (metodo != 1 && metodo != 2) {
+                System.out.println("Método inválido!");
+                return;
+            }
+
+            System.out.print("Informe a versão da criptografia: ");
+            int versao = Funcoes.lerIntValido();
+
+            Criptografia.criptografar(metodo, versao);
+
+        } catch (NumberFormatException e) {
+            System.out.println("Entrada inválida!");
+        } catch (Exception e) {
+            System.out.println("Erro durante criptografia: " + e.getMessage());
+        }
+    }
+
+    public static void CasamentoPadrao() {
+       
+        try {
+            System.out.print("Informe o método de criptografia usado (1 - XOR, 2 - Caesar): ");
+            int metodo = Funcoes.lerIntValido();
+
+            if (metodo != 1 && metodo != 2) {
+                System.out.println("Método inválido!");
+                return;
+            }
+
+            System.out.print("Informe a versão da criptografia: ");
+            int versao = Funcoes.lerIntValido();
+
+            System.out.print("Digite o padrão que deseja buscar: ");
+            String padraoStr = sc.nextLine();
+
+            byte[] padrao = padraoStr.getBytes();
+
+            List<Integer> resultados = Criptografia.buscarPadraoNoArquivo(metodo, versao, padrao);
+
+            if (resultados.isEmpty()) {
+                System.out.println("Padrão não encontrado no arquivo.");
+            } else {
+                System.out.println("Padrão encontrado nas posições: " + resultados);
+            }
+
+        } catch (NumberFormatException e) {
+            System.out.println("Entrada inválida!");
+        } catch (Exception e) {
+            System.out.println("Erro durante busca de padrão: " + e.getMessage());
+        }
+    }
+
 }
