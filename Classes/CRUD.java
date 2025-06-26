@@ -16,7 +16,9 @@ public class CRUD {
             System.out.println("5. Deletar Capitulo");
             System.out.println("6. Compactar base de dados");
             System.out.println("7. Descompactar base de dados");
-            System.out.println("8. Sair");
+            System.out.println("8. Criptografar base de dados");
+            System.out.println("9. Casamento de Dados");
+            System.out.println("10. Sair");
             System.out.print("Escolha uma opcao: ");
 
             int opcao = Funcoes.lerIntValido();
@@ -48,6 +50,15 @@ public class CRUD {
                     // Executa descompressão dos dados com Huffman e LZW.
                     FuncoesCRUD.Descompressao();
                 case 8 -> {
+                    FuncoesCRUD.Criptografar();
+                    
+                }
+                case 9 -> {
+                    FuncoesCRUD.CasamentoPadrao();
+                  
+                }
+
+                case 10 -> {
                     // Encerra o programa.
                     System.out.println("Saindo...");
                     return;
